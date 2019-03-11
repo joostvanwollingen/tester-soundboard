@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<!--
+	Ethereal by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ethereal by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Wrapper -->
+					<div id="wrapper">
+
+						<!-- Panel -->
+							<section class="panel color4-alt">
+								
+								<div class="inner columns aligned">
+									
+									<div class="span-25-25">
+										<h2 class="major">Tester Soundboard</h2>
+										<div id="soundboard"></div>
+										<button class="icon fa-stop" onclick="stopAllSound()">Stop</button>
+
+									</div>
+									
+								</div>
+                            </section>
+							<script>
+								let sounds = [
+									{
+										id: "failure",
+										source: "failure.mp3",
+										text: "Failure is not an option."
+									},
+									{
+										id: "why",
+										source: "why.mp3",
+										text: "Why?"
+									},
+									{
+										id: "itdepends",
+										source: "itdepends.mp3",
+										text: "It depends"
+									},
+									{
+										id: "guilty",
+										source: "guilty.mp3",
+										text: "All code is guilty, until proven innocent."
+									},
+									{
+										id: "liveyet",
+										source: "liveyet.mp3",
+										text: "Is it live yet?",
+									},
+									{
+										id: "howtotest",
+										source: "howtotest.mp3",
+										text: "How to test this?",
+									},
+									{
+										id: "illusions",
+										source: "illusions.mp3",
+										text: "Break illusions",
+									},
+									
+								];
+
+								let soundboardDiv = document.querySelector('#soundboard')
+
+								sounds.forEach((item, index)=>{
+									if(index % 2 === 0 ) {
+										ul = document.createElement("ul")
+										ul.classList.add("actions");
+										soundboardDiv.appendChild(ul);
+									}
+
+									ul.appendChild(createListItem(item.id, item.source, item.text));
+									
+								})
+
+								function createListItem(itemId, itemSource, itemText) {
+									li = document.createElement("li");
+									
+									a = document.createElement("a");
+									a.href="#"
+									a.classList.add("button","large");
+									a.setAttribute("onclick",`playSound('${itemId}')`);
+									a.text=`${itemText}`;
+
+									audio = document.createElement("audio");
+									audio.id = `${itemId}`;
+									audio.classList.add("soundboardItem")
+									source = document.createElement("source");
+									source.src=`${itemSource}`;
+									source.type="audio/mpeg";
+									audio.text="Your browser does not support the audio element.";
+									audio.appendChild(source)
+									
+									li.appendChild(audio);
+									li.appendChild(a);
+									return li;
+								}
+								
+								function playSound(audioId) {
+										  var sound = document.getElementById(audioId);
+										  sound.play();
+									  }
+
+								function stopAllSound() {
+									audioElements = document.getElementsByClassName("soundboardItem");
+									for (const item of audioElements) {
+										item.pause();
+										item.currentTime = 0;
+									};
+								}
+							</script>
+						
+                            
+
+						<!-- Panel -->
+							<section class="panel color4">
+								<div class="intro color4">
+									<h2 class="major">Xebia</h2>
+									<p>We’re a group of highly ambitious craftsmen. From strategy to technology implementation, Xebia is a one-stop shop for full stack digital transformation.</p>
+									
+									<div class="span-1-3">
+										<ul class="contact-icons color1">
+                                            <li class="icon fa-home"><a href="https://xebia.com/">Xebia</a></li>
+                                            <li class="icon fa-twitter"><a href="https://twitter.com/xebia">Twitter</a></li>
+											<li class="icon fa-linkedin"><a href="https://linkedin.com/company/xebia">LinkedIn</a></li>
+											<li class="icon fa-rss-square"><a href="https://xebia.com/blog/">Blog</a></li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+						<!-- Copyright -->
+							<div class="copyright">&copy; Tester Soundboard. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
+
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
